@@ -13,6 +13,8 @@ def extract_datalake_to_deltalake(spark:SparkSession, inputPath:String, outputPa
       StructField("PREFIX",StringType),
       StructField("FIRST",StringType),
       StructField("LAST",StringType),
+      StructField("SUFFIX",StringType),
+      StructField("MAIDEN",StringType),
       StructField("MARITAL",StringType),
       StructField("RACE",StringType),
       StructField("ETHNICITY",StringType),
@@ -44,3 +46,11 @@ def extract_datalake_to_deltalake(spark:SparkSession, inputPath:String, outputPa
 // COMMAND ----------
 
 extract_datalake_to_deltalake(spark, "abfss://hos-project-landing@hospprojectstorage.dfs.core.windows.net/patients/","abfss://hos-project-deltalake-extract@hospprojectstorage.dfs.core.windows.net/patients/VOLUMES")
+
+// COMMAND ----------
+
+val data = spark.read.format("delta").load("abfss://hos-project-deltalake-extract@hospprojectstorage.dfs.core.windows.net/patients/VOLUMES")
+
+// COMMAND ----------
+
+display(data)
