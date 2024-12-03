@@ -45,11 +45,11 @@ def extract_datalake_to_deltalake(spark:SparkSession, inputPath:String, outputPa
 
 // COMMAND ----------
 
-extract_datalake_to_deltalake(spark, "abfss://hos-project-landing@hospprojectstorage.dfs.core.windows.net/patients/","abfss://hos-project-deltalake-extract@hospprojectstorage.dfs.core.windows.net/patients/VOLUMES")
+extract_datalake_to_deltalake(spark, "abfss://hos-project-landing@hospprojectstorage.dfs.core.windows.net/patients/","abfss://hos-project-deltalake-extract@hospprojectstorage.dfs.core.windows.net/patients/VOLUMES/data")
 
 // COMMAND ----------
 
-val data = spark.read.format("delta").load("abfss://hos-project-deltalake-extract@hospprojectstorage.dfs.core.windows.net/patients/VOLUMES")
+val data = spark.read.format("delta").load("abfss://hos-project-deltalake-extract@hospprojectstorage.dfs.core.windows.net/patients/VOLUMES/data/")
 
 // COMMAND ----------
 
